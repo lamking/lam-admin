@@ -66,6 +66,7 @@
 </style>
 <script type="text/ecmascript-6">
   import {mapGetters} from 'vuex'
+
   export default {
     data () {
       return {
@@ -89,13 +90,14 @@
       },
       dropdownOnClick (name) {
         switch (name) {
-          case 'logout':
-            this.$http.post('user/logout').then(res => {})
-            this.$store.commit('LOGOUT')
-            break
-          case 'updatePwd':
-            this.updatePwdModal = true
-            break
+        case 'logout':
+          this.$http.post('user/logout').then(res => {
+          })
+          this.$store.commit('LOGOUT')
+          break
+        case 'updatePwd':
+          this.updatePwdModal = true
+          break
         }
       },
       updatePswOk () {

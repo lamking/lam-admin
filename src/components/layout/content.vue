@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--v-if="$route.path !== '/'"-->
     <Row style="min-width: 1366px;">
       <!--子菜单-->
       <i-col :span="leftContentSpan" v-if="!isInsidePage">
@@ -9,14 +8,11 @@
             <div class="options-title c-f-i">
               {{currentMenu.title}}
             </div>
-            <div class="options-item c-f-i" :class="{'options-item-act': item.id === currentMenuItem.id}" v-for="item in currentMenu.authorities" @click="selectItem(item)">
+            <div class="options-item c-f-i" :class="{'options-item-act': item.id === currentMenuItem.id}" v-for="item in currentMenu.authorities" :key="item.id" @click="selectItem(item)">
               {{item.title}}
             </div>
           </div>
         </div>
-        <!--<div class="hide-options">-->
-        <!--<i class="iconfont icon-zuoshuangjiantou"></i>-->
-        <!--</div>-->
       </i-col>
       <i-col :span="centerContentSpan">
         <div class="layout-content" :style="{'min-height': contentHeight + 'px'}">
@@ -28,36 +24,6 @@
           </div>
         </div>
       </i-col>
-      <!--<i-col :span="rightContentSpan">-->
-        <!--<div class="show-notice-options" @click="showNotice">-->
-          <!--<i class="iconfont icon-zuoshuangjiantou"></i>-->
-        <!--</div>-->
-        <!--<div class="layout-notice-box" :style="{'min-height': contentHeight + 80 + 'px'}">-->
-          <!--<Collapse style="background: #fff; border:none" v-model="collapseValue" accordion>-->
-            <!--<Panel name="1" class="layout-notice-item">-->
-              <!--订单处理-->
-              <!--<div slot="content" class="layout-notice-item-content">-->
-                <!--待发货订单(5)-->
-              <!--</div>-->
-            <!--</Panel>-->
-            <!--<Panel name="2" class="layout-notice-item">-->
-              <!--商品审核通知-->
-              <!--<div slot="content" class="layout-notice-item-content">-->
-                <!--&lt;!&ndash;暂无消息提醒&ndash;&gt;-->
-                <!--<div v-for="item in noticeList" :key="item.id" class="t-o-h" style="font-size: 12px;">-->
-                  <!--{{item.content}}-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</Panel>-->
-            <!--<Panel name="3" class="layout-notice-item">-->
-            <!--内部公告-->
-            <!--<div slot="content" class="layout-notice-item-content">-->
-            <!--暂无消息提醒-->
-            <!--</div>-->
-            <!--</Panel>-->
-          <!--</Collapse>-->
-        <!--</div>-->
-      <!--</i-col>-->
     </Row>
   </div>
 </template>

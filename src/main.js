@@ -11,6 +11,9 @@ import rsa from './http/rsa'
 // 引入iView
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
+// 引入全局样式
+import './style/base.less'
+
 Vue.config.productionTip = false
 Vue.use(iView)
 Vue.use(http)

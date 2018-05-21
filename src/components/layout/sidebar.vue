@@ -6,7 +6,7 @@
       <i class="iconfont icon-shousuo"></i>
     </div>
     <template v-for="menu in menuList">
-      <Menu-item :name="menu.id" >
+      <Menu-item :name="menu.id" :key="menu.id">
         <Icon type="ios-navigate" :size="iconSize"></Icon>
         <span v-if="!isCollapsed" class="layout-text">{{menu.title}}</span>
       </Menu-item>

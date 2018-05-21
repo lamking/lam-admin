@@ -6,6 +6,9 @@ import Vuex from 'vuex'
 import state from './states'
 // modules
 import user from './modules/user'
+import menu from './modules/menu'
+import config from './modules/config'
+import imgPreview from './modules/imgPreview'
 // global actions
 import actions from './actions'
 // global mutations
@@ -17,6 +20,9 @@ export default new Vuex.Store({
   actions,
   mutations,
   modules: {
-    user
+    user,
+    menu,
+    config,
+    imgPreview
   }
 })
