@@ -9,6 +9,8 @@ import user from './modules/user'
 import menu from './modules/menu'
 import config from './modules/config'
 import imgPreview from './modules/imgPreview'
+import breadcrumb from './modules/breadcrumb'
+
 // global actions
 import actions from './actions'
 // global mutations
@@ -23,6 +25,7 @@ export default new Vuex.Store({
     user,
     menu,
     config,
-    imgPreview
+    imgPreview,
+    breadcrumb
   }
 })

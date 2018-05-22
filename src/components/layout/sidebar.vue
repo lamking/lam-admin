@@ -1,17 +1,17 @@
 <template>
   <div>
-  <Menu ref="menu" active-key="1" theme="dark" width="auto" @on-select="selectItem" :active-name="currentMenu.id">
-    <div class="layout-logo-left"></div>
-    <div class="trigger" @click="collapsedSider">
-      <i class="iconfont icon-shousuo"></i>
-    </div>
-    <template v-for="menu in menuList">
-      <Menu-item :name="menu.id" :key="menu.id">
-        <Icon type="ios-navigate" :size="iconSize"></Icon>
-        <span v-if="!isCollapsed" class="layout-text">{{menu.title}}</span>
-      </Menu-item>
-    </template>
-  </Menu>
+    <Menu ref="menu" active-key="1" theme="dark" width="auto" @on-select="selectItem" :active-name="currentMenu.id">
+      <div class="layout-logo-left"></div>
+      <div class="trigger" @click="collapsedSider">
+        <i class="iconfont icon-shousuo"></i>
+      </div>
+      <template v-for="menu in menuList">
+        <Menu-item :name="menu.id" :key="menu.id">
+          <Icon type="ios-navigate" :size="iconSize"></Icon>
+          <span v-if="!isCollapsed" class="layout-text">{{menu.title}}</span>
+        </Menu-item>
+      </template>
+    </Menu>
   </div>
 </template>
 
@@ -23,7 +23,7 @@
       isCollapsed: {}
     },
     computed: {
-      ...mapGetters(['menuList', 'currentMenu']),
+      ...mapGetters(['menuList', 'currentMenu', 'breadcrumbList']),
       iconSize () {
         return this.isCollapsed ? 30 : 15
       }
@@ -34,10 +34,11 @@
       },
       selectItem (id) {
         if (this.$route.meta.level >= 3) {
-          this.$router.go(-1)
+          this.$router.push({path: this.breadcrumbList[1].path})
         }
         let obj = this.findMenu(id)
         this.$store.commit('SET_CURRENT_MENU', obj)
+        this.$store.commit('SET_LEVEL_ONE', obj)
       },
       findMenu (id) {
         let find = {}
@@ -74,7 +75,7 @@
     transition: width .2s ease-in-out;
   }
   .ivu-menu-dark {
-   background: #24303C;
+    background: #24303C;
   }
   .trigger {
     height: 30px;

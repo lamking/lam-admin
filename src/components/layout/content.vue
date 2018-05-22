@@ -15,6 +15,9 @@
         </div>
       </i-col>
       <i-col :span="centerContentSpan">
+        <div class="layout-breadcrumb">
+          <breadcrumb></breadcrumb>
+        </div>
         <div class="layout-content" :style="{'min-height': contentHeight + 'px'}">
           <div class="layout-content-main">
             <keep-alive>
@@ -30,6 +33,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import breadcrumb from '../layout/breadcrumb'
   export default {
     data () {
       return {
@@ -110,6 +114,9 @@
       '$route' (val) {
         this.updataSpan()
       }
+    },
+    components: {
+      breadcrumb
     }
   }
 </script>
@@ -122,7 +129,7 @@
 
   .layout-content {
     min-height: 200px;
-    margin: 25px 30px;
+    margin: 10px 30px;
     background: #fff;
     border-radius: 4px;
   }
@@ -215,6 +222,12 @@
       color: #c3c5c0;
       line-height: 35px;
     }
+  }
+  // 面包屑样式
+  .layout-breadcrumb {
+    background: #fff;
+    padding: 20px;
+    margin: 10px 30px 0 30px;
   }
 </style>
 <style>
