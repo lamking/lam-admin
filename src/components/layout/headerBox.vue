@@ -1,7 +1,7 @@
 <template>
   <div>
     <Row>
-      <i-col span="23">
+      <i-col span="20">
         <div class="menu-box r-f">
           <div class="menu-item r-f-i" @click="home">
             <Tooltip content="首页" placement="bottom">
@@ -15,7 +15,8 @@
           </div>
         </div>
       </i-col>
-      <i-col span="1">
+      <i-col span="3" offset="1">
+        您好，{{userInfo.name}}
         <Dropdown style="margin-left: 20px" @on-click="dropdownOnClick">
           <Avatar :src="userInfo.headImg" size="large"/>
           <DropdownMenu slot="list">
@@ -79,25 +80,25 @@
       }
     },
     computed: {
-      ...mapGetters(['userInfo', 'menuList'])
+      ...mapGetters(['userInfo', 'menuList', 'breadcrumbList'])
     },
     methods: {
       returnBack () {
-        window.history.go(-1)
+        this.$router.push({path: this.breadcrumbList[this.breadcrumbList.length - 2].path, query: this.breadcrumbList[this.breadcrumbList.length - 2]['query']})
       },
       home () {
         this.$store.commit('SET_CURRENT_MENU', this.menuList[0])
       },
       dropdownOnClick (name) {
         switch (name) {
-        case 'logout':
-          this.$http.post('user/logout').then(res => {
-          })
-          this.$store.commit('LOGOUT')
-          break
-        case 'updatePwd':
-          this.updatePwdModal = true
-          break
+          case 'logout':
+            this.$http.post('user/logout').then(res => {
+            })
+            this.$store.commit('LOGOUT')
+            break
+          case 'updatePwd':
+            this.updatePwdModal = true
+            break
         }
       },
       updatePswOk () {
@@ -105,7 +106,10 @@
           this.$Message.error('新密码与确认密码不相符')
           return false
         }
-        this.$http.post('admin/updatePassword', this.updatePwd).then(res => {
+        this.$http.post('admin/updatePassword', {
+          oldPassword: this.$rsa(this.updatePwd.oldPassword),
+          password: this.$rsa(this.updatePwd.password)
+        }).then(res => {
           this.$Message.success('修改成功')
           this.updatePwdModal = false
         })

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Breadcrumb v-if="breadcrumbList[0]">
-      <BreadcrumbItem v-for="item in breadcrumbList" :to="item.path" :key="item.name">{{item.name}}</BreadcrumbItem>
+      <BreadcrumbItem v-for="(item, index) in breadcrumbList" :to="item.fullPath || item.path" :key="index">{{item.name}}</BreadcrumbItem>
     </Breadcrumb>
   </div>
 </template>

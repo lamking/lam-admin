@@ -1,17 +1,17 @@
 <template>
   <div>
-    <Menu ref="menu" active-key="1" theme="dark" width="auto" @on-select="selectItem" :active-name="currentMenu.id">
-      <div class="layout-logo-left"></div>
-      <div class="trigger" @click="collapsedSider">
-        <i class="iconfont icon-shousuo"></i>
-      </div>
-      <template v-for="menu in menuList">
-        <Menu-item :name="menu.id" :key="menu.id">
-          <Icon type="ios-navigate" :size="iconSize"></Icon>
-          <span v-if="!isCollapsed" class="layout-text">{{menu.title}}</span>
-        </Menu-item>
-      </template>
-    </Menu>
+  <Menu ref="menu" active-key="1" theme="dark" width="auto" @on-select="selectItem" :active-name="currentMenu.id">
+    <div class="layout-logo-left"><span v-if="!isCollapsed">百运通平台管理系统</span></div>
+    <div class="trigger" @click="collapsedSider">
+      <i class="iconfont icon-shousuo"></i>
+    </div>
+    <template v-for="menu in menuList">
+      <Menu-item :name="menu.id" :key="menu.id">
+        <Icon type="ios-navigate" :size="iconSize"></Icon>
+        <span v-if="!isCollapsed" class="layout-text">{{menu.title}}</span>
+      </Menu-item>
+    </template>
+  </Menu>
   </div>
 </template>
 
@@ -66,6 +66,10 @@
     background: #5b6270;
     border-radius: 3px;
     margin: 15px auto;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    line-height: 28px;
   }
   .layout-hide-text .layout-text {
     display: none;
@@ -75,7 +79,7 @@
     transition: width .2s ease-in-out;
   }
   .ivu-menu-dark {
-    background: #24303C;
+   background: #24303C;
   }
   .trigger {
     height: 30px;

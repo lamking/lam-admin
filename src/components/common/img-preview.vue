@@ -2,10 +2,13 @@
   <div>
     <Modal v-model="showModal"
            title="图片预览"
-           @on-cancel="close">
+           width="960"
+           :styles="{'z-index': 2000}"
+           @on-cancel="close"
+           :transfer="false">
       <img style="width: 100%;" :src="imgPreview.url" alt="">
       <div slot="footer">
-        <Button type="primary" size="large" long  @click="close">关闭</Button>
+        <Button type="primary" size="large" long @click="close">关闭</Button>
       </div>
     </Modal>
   </div>
@@ -14,8 +17,10 @@
 </style>
 <style>
 </style>
+<style>
+</style>
 <script type="text/ecmascript-6">
-  import { mapGetters } from 'vuex'
+  import {mapGetters} from 'vuex'
 
   export default {
     props: [

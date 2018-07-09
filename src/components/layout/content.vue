@@ -69,7 +69,7 @@
         if (JSON.stringify(this.currentMenu) !== '{}') {
           this.currentMenuItem = this.currentMenu.authorities[0]
           setTimeout(() => {
-            if (this.$route.meta.level <= 2) {
+            if (JSON.stringify(this.$route.meta) === '{}' || this.$route.meta.level <= 2) {
               this.$router.push({path: this.currentMenu.authorities[0].path})
             }
           }, 100)

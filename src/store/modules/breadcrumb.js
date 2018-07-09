@@ -1,6 +1,6 @@
 // import Vue from 'vue'
 const state = {
-  breadcrumbList: JSON.parse(window.sessionStorage.getItem('breadcrumbList' || []))
+  breadcrumbList: JSON.parse(window.sessionStorage.getItem('breadcrumbList' || [])) || []
 }
 const getters = {
   breadcrumbList (state) {
@@ -9,6 +9,7 @@ const getters = {
 }
 const mutations = {
   PUSH_BREADCRUMB (state, payload) {
+    // console.log(state)
     // 判断是否为第二级
     if (payload.meta.level === 2) {
       let one = state.breadcrumbList[0]
@@ -51,14 +52,16 @@ const mutations = {
   _HANDLER_DATA () {
     // 处理数据 并且存入
     let newArr = []
-    state.breadcrumbList.forEach(val => {
-      newArr.push({
-        meta: val.meta,
-        path: val.path,
-        name: val.name
+    if (state.breadcrumbList.length > 0) {
+      state.breadcrumbList.forEach(val => {
+        newArr.push({
+          meta: val.meta,
+          path: val.path,
+          name: val.name
+        })
       })
-    })
-    window.sessionStorage.setItem('breadcrumbList', JSON.stringify(newArr))
+      window.sessionStorage.setItem('breadcrumbList', JSON.stringify(newArr))
+    }
   }
 }
 const actions = {}
